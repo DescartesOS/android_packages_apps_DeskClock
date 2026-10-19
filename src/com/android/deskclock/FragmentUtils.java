@@ -106,6 +106,9 @@ public final class FragmentUtils {
         hideAllFragments();
         DeskClockFragment fragment = getDeskClockFragment(tab);
         mFragmentManager.beginTransaction().show(fragment).commit();
+        if (fragment != mCurrentPrimaryItem && fragment.getView() != null) {
+            M3eMotion.enter(fragment.getView());
+        }
         mCurrentPrimaryItem = fragment;
     }
 

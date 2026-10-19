@@ -22,6 +22,7 @@
 
     <com.android.deskclock.AlarmRecyclerView
         android:id="@+id/alarms_recycler_view"
+        android:layoutAnimation="@anim/m3e_list_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"

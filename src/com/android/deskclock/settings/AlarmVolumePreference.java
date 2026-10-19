@@ -68,8 +68,12 @@ public class AlarmVolumePreference extends Preference {
         mSlider.setStepSize(1f);
         mSlider.setValue((float) audioManager.getStreamVolume(STREAM_ALARM) -
                 audioManager.getStreamMinVolume(STREAM_ALARM));
-        ((ImageView) holder.findViewById(android.R.id.icon))
-                .setImageResource(R.drawable.ic_alarm_small);
+        final ImageView icon = (ImageView) holder.findViewById(android.R.id.icon);
+        if (getIcon() != null) {
+            icon.setImageDrawable(getIcon());
+        } else {
+            icon.setImageResource(R.drawable.ic_alarm_small);
+        }
 
         onSliderChanged();
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Material 3 Expressive shape and spacing tokens. -->
+<resources>
+    <dimen name="m3e_corner_large">24dp</dimen>
+    <dimen name="m3e_corner_extra_large">28dp</dimen>
+    <dimen name="m3e_corner_full">100dp</dimen>
+    <dimen name="m3e_dialog_corner">40dp</dimen>
+
+    <dimen name="m3e_screen_margin">16dp</dimen>
+    <dimen name="m3e_title_emblem_size">40dp</dimen>
+    <dimen name="m3e_title_emblem_icon_padding">9dp</dimen>
+    <dimen name="m3e_title_text_size">28sp</dimen>
+
+    <!-- Motion -->
+    <dimen name="m3e_motion_offset">24dp</dimen>
+
+    <!-- Large title -->
+    <dimen name="m3e_large_title_margin">24dp</dimen>
+    <dimen name="m3e_large_title_text_size">44sp</dimen>
+
+    <!-- Grouped lists -->
+    <dimen name="m3e_pref_emblem_size">40dp</dimen>
+    <dimen name="m3e_pref_emblem_inset">9dp</dimen>
+    <dimen name="m3e_group_outer_radius">24dp</dimen>
+    <dimen name="m3e_group_inner_radius">4dp</dimen>
+    <dimen name="m3e_group_gap">4dp</dimen>
+
+    <!-- Floating navigation pill -->
+    <dimen name="m3e_nav_pill_margin_horizontal">16dp</dimen>
+    <dimen name="m3e_nav_pill_margin_bottom">12dp</dimen>
+    <dimen name="m3e_nav_pill_padding">8dp</dimen>
+    <dimen name="m3e_nav_indicator_height">48dp</dimen>
+    <dimen name="m3e_tab_min_width">56dp</dimen>
+</resources>

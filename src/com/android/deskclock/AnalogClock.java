@@ -20,10 +20,13 @@ import static android.text.format.DateUtils.SECOND_IN_MILLIS;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.ColorStateList;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -106,6 +109,31 @@ public class AnalogClock extends FrameLayout {
         mSecondHand.setImageResource(R.drawable.clock_analog_second);
         mSecondHand.getDrawable().mutate();
         addView(mSecondHand);
+
+        // In the app, color the face with the expressive palette. The screensaver keeps its
+        // white hands on black.
+        if (!isScreensaver(context)) {
+            tint(dial, R.attr.colorOutlineVariant);
+            tint(mHourHand, R.attr.colorPrimary);
+            tint(mMinuteHand, R.attr.colorOnSurface);
+        }
+    }
+
+    private static boolean isScreensaver(Context context) {
+        while (context instanceof ContextWrapper) {
+            if (context instanceof ScreensaverActivity || context instanceof Screensaver) {
+                return true;
+            }
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+        return false;
+    }
+
+    private static void tint(ImageView view, int attr) {
+        final TypedValue value = new TypedValue();
+        if (view.getContext().getTheme().resolveAttribute(attr, value, true)) {
+            view.setImageTintList(ColorStateList.valueOf(value.data));
+        }
     }
 
     @Override

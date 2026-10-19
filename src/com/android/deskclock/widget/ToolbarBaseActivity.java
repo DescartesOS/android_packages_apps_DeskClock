@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
@@ -59,6 +60,19 @@ public class ToolbarBaseActivity extends FragmentActivity {
                     BlendMode.SRC_ATOP
             );
             toolbar.getNavigationIcon().setColorFilter(filter);
+            setTonalNavigationButton(toolbar);
+        }
+    }
+
+    /** Puts the toolbar's back button on a tonal circle. */
+    private static void setTonalNavigationButton(Toolbar toolbar) {
+        for (int i = 0; i < toolbar.getChildCount(); i++) {
+            final View child = toolbar.getChildAt(i);
+            if (child instanceof ImageButton && ((ImageButton) child).getDrawable()
+                    == toolbar.getNavigationIcon()) {
+                child.setBackgroundResource(R.drawable.m3e_tonal_circle);
+                break;
+            }
         }
     }
 

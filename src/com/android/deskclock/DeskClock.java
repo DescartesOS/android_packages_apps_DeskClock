@@ -57,8 +57,8 @@ import com.android.deskclock.stopwatch.StopwatchService;
 import com.android.deskclock.timer.TimerService;
 import com.android.deskclock.uidata.TabListener;
 import com.android.deskclock.uidata.UiDataModel;
+import com.android.deskclock.widget.FloatingTabBar;
 import com.android.deskclock.widget.toast.SnackbarManager;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -112,8 +112,11 @@ public class DeskClock extends BaseActivity
     /** The view that displays the current tab's title */
     private TextView mTitleView;
 
+    /** The cookie emblem next to the title, showing the current tab's icon */
+    private ImageView mTitleEmblem;
+
     /** The bottom navigation bar */
-    private BottomNavigationView mBottomNavigation;
+    private FloatingTabBar mBottomNavigation;
 
     private FragmentUtils mFragmentUtils;
 
@@ -175,8 +178,12 @@ public class DeskClock extends BaseActivity
                 getSelectedDeskClockFragment().onLeftButtonClick(mLeftButton));
         mRightButton.setOnClickListener(view ->
                 getSelectedDeskClockFragment().onRightButtonClick(mRightButton));
+        M3eMotion.addPressSpring(mFab);
+        M3eMotion.addPressSpring(mLeftButton);
+        M3eMotion.addPressSpring(mRightButton);
 
-        final long duration = UiDataModel.getUiDataModel().getShortAnimationDuration();
+        // Long enough for the spring to settle visibly.
+        final long duration = M3eMotion.DURATION_MEDIUM;
 
         final ValueAnimator hideFabAnimation = getScaleAnimator(mFab, 1f, 0f);
         final ValueAnimator showFabAnimation = getScaleAnimator(mFab, 0f, 1f);
@@ -185,6 +192,16 @@ public class DeskClock extends BaseActivity
         final ValueAnimator rightHideAnimation = getScaleAnimator(mRightButton, 1f, 0f);
         final ValueAnimator leftShowAnimation = getScaleAnimator(mLeftButton, 0f, 1f);
         final ValueAnimator rightShowAnimation = getScaleAnimator(mRightButton, 0f, 1f);
+
+        // Buttons leave with emphasized easing and pop back in on a spring.
+        for (ValueAnimator hide : new ValueAnimator[] {
+                hideFabAnimation, leftHideAnimation, rightHideAnimation}) {
+            hide.setInterpolator(M3eMotion.EMPHASIZED_ACCELERATE);
+        }
+        for (ValueAnimator show : new ValueAnimator[] {
+                showFabAnimation, leftShowAnimation, rightShowAnimation}) {
+            show.setInterpolator(M3eMotion.SPRING_FAST);
+        }
 
         hideFabAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -237,10 +254,11 @@ public class DeskClock extends BaseActivity
         UiDataModel.getUiDataModel().addTabListener(mTabChangeWatcher);
 
         mTitleView = findViewById(R.id.title_view);
+        mTitleEmblem = findViewById(R.id.title_emblem);
     }
 
     private final NavigationBarView.OnItemSelectedListener mNavigationListener
-            = new BottomNavigationView.OnItemSelectedListener() {
+            = new NavigationBarView.OnItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -542,7 +560,12 @@ public class DeskClock extends BaseActivity
         // Update the selected tab in the mBottomNavigation if it does not agree with UiDataModel.
         mBottomNavigation.setSelectedItemId(selectedTab.getPageResId());
         mFragmentUtils.showFragment(selectedTab);
-        mTitleView.setText(selectedTab.getLabelResId());
+        if (!getString(selectedTab.getLabelResId()).contentEquals(mTitleView.getText())) {
+            mTitleView.setText(selectedTab.getLabelResId());
+            mTitleEmblem.setImageResource(selectedTab.getIconResId());
+            M3eMotion.enter(mTitleView);
+            M3eMotion.spin(mTitleEmblem);
+        }
     }
 
     /**

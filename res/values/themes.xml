@@ -17,9 +17,12 @@
 
 <resources>
 
-    <style name="Theme.DeskClock" parent="Theme.Material3Expressive.DynamicColors.Dark.NoActionBar">
+    <style name="Theme.DeskClock" parent="Theme.Material3Expressive.DynamicColors.DayNight.NoActionBar">
         <item name="android:colorBackgroundFloating">?attr/colorBackgroundFloating</item>
-        <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">@bool/m3e_light_system_bars</item>
+        <item name="android:windowLightNavigationBar">@bool/m3e_light_system_bars</item>
         <item name="popupMenuBackground">@drawable/popup_background</item>
         <item name="floatingActionButtonStyle">@style/Widget.DeskClock.FloatingActionButton</item>
 
@@ -38,6 +41,11 @@
         <item name="snackbarButtonStyle">@style/SnackBarButtonStyle</item>
         <item name="snackbarTextViewStyle">@style/SnackBarTextStyle</item>
         <item name="actionBarSize">64dp</item>
+        <!-- Google Sans Flex everywhere that doesn't pick its own face. -->
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="fontFamily">@font/google_sans_flex</item>
+        <item name="actionButtonStyle">@style/Widget.DeskClock.ToolbarAction</item>
+        <item name="actionOverflowButtonStyle">@style/Widget.DeskClock.ToolbarAction.Overflow</item>
     </style>
 
     <style name="Theme.DeskClock.Settings">
@@ -45,6 +53,8 @@
         <item name="elevationOverlayColor">?attr/colorPrimary</item>
         <item name="colorControlActivated">?attr/colorAccent</item>
         <item name="android:dropDownSpinnerStyle">@style/DeskClock.Settings.DropDownSpinnerStyle</item>
+        <item name="preferenceCategoryTitleTextAppearance">@style/TextAppearance.DeskClock.PreferenceCategory</item>
+        <item name="preferenceCategoryTitleTextColor">?attr/colorOnSurface</item>
     </style>
 
     <style name="Theme.DeskClock.CitySelection">
@@ -56,13 +66,78 @@
 
     <style name="Widget.DeskClock.FloatingActionButton"
         parent="Widget.Material3Expressive.FloatingActionButton">
+        <!-- Expressive rounded square instead of a circle. -->
         <item name="shapeAppearanceOverlay">
-            @style/ShapeAppearance.Material3.Corner.Full
+            @style/ShapeAppearance.Material3.Corner.ExtraLarge
         </item>
+    </style>
+
+    <!-- Toolbar actions sit on tonal circles. -->
+    <style name="Widget.DeskClock.ToolbarAction" parent="Widget.AppCompat.ActionButton">
+        <item name="android:background">@drawable/m3e_tonal_circle</item>
+        <item name="android:minWidth">56dp</item>
+    </style>
+
+    <style name="Widget.DeskClock.ToolbarAction.Overflow"
+        parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:background">@drawable/m3e_tonal_circle</item>
+        <item name="android:minWidth">56dp</item>
+    </style>
+
+    <!-- Floating pill tab bar, like the expressive floating toolbar. -->
+    <style name="Widget.DeskClock.FloatingTab" parent="Widget.Material3.Button.TextButton.Icon">
+        <item name="android:checkable">true</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minWidth">@dimen/m3e_tab_min_width</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textAppearance">@style/navText</item>
+        <item name="android:textColor">@color/m3e_nav_item_color</item>
+        <item name="backgroundTint">@color/m3e_tab_background</item>
+        <item name="iconTint">@color/m3e_nav_item_color</item>
+        <item name="iconPadding">8dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.Full</item>
     </style>
 
     <style name="Theme.DeskClock.MaterialSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
         <item name="thumbIcon">@drawable/switch_thumb_icon</item>
         <item name="thumbIconTint">@color/switch_thumb_icon</item>
+    </style>
+
+    <!-- Expressive time picker used when setting an alarm. -->
+    <style name="ThemeOverlay.DeskClock.TimePicker" parent="ThemeOverlay.Material3.MaterialTimePicker">
+        <item name="materialTimePickerStyle">@style/Widget.DeskClock.TimePicker</item>
+        <item name="chipStyle">@style/Widget.DeskClock.TimePicker.Display</item>
+        <item name="materialClockStyle">@style/Widget.DeskClock.TimePicker.Clock</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="fontFamily">@font/google_sans_flex</item>
+    </style>
+
+    <style name="Widget.DeskClock.TimePicker" parent="Widget.Material3.MaterialTimePicker">
+        <item name="shapeAppearance">@style/ShapeAppearance.DeskClock.Dialog</item>
+        <item name="backgroundTint">?attr/colorSurfaceContainerHigh</item>
+    </style>
+
+    <style name="Widget.DeskClock.TimePicker.Display" parent="Widget.Material3.MaterialTimePicker.Display">
+        <item name="android:textAppearance">@style/TextAppearance.DeskClock.TimePickerDigits</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.DeskClock.TimeChip</item>
+    </style>
+
+    <style name="Widget.DeskClock.TimePicker.Clock" parent="Widget.Material3.MaterialTimePicker.Clock">
+        <item name="clockFaceBackgroundColor">?attr/colorSurfaceContainerHighest</item>
+        <item name="clockHandColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="ShapeAppearance.DeskClock.Dialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/m3e_dialog_corner</item>
+    </style>
+
+    <style name="ShapeAppearance.DeskClock.TimeChip" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/m3e_corner_large</item>
     </style>
 </resources>

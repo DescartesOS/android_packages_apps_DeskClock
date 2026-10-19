@@ -30,6 +30,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.android.deskclock.BaseActivity;
 import com.android.deskclock.LogUtils;
@@ -61,6 +62,8 @@ public class ExpiredTimersActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Ringing screens stay dark, also over a light theme and the lock screen.
+        getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         super.onCreate(savedInstanceState);
 
         final List<Timer> expiredTimers = getExpiredTimers();

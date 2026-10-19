@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Hero card at the top of settings. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/m3e_hero_card"
+    android:orientation="vertical"
+    android:padding="28dp">
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/m3e_cookie"
+        android:backgroundTint="?attr/colorPrimary"
+        android:importantForAccessibility="no"
+        android:padding="16dp"
+        android:src="@drawable/ic_pref_sparkle"
+        android:tint="?attr/colorOnPrimary" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/google_sans_flex"
+        android:text="@string/m3e_settings_hero_title"
+        android:textColor="?attr/colorOnPrimaryContainer"
+        android:textSize="34sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/google_sans_flex"
+        android:text="@string/m3e_settings_hero_summary"
+        android:textColor="?attr/colorOnPrimaryContainer"
+        android:textSize="16sp" />
+</LinearLayout>

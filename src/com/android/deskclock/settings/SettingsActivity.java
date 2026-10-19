@@ -97,6 +97,7 @@ public final class SettingsActivity extends ToolbarBaseActivity {
         public void onCreatePreferences(Bundle bundle, String rootKey) {
             getPreferenceManager().setStorageDeviceProtected();
             addPreferencesFromResource(R.xml.settings);
+            PreferenceEmblems.apply(getPreferenceScreen());
             final Preference timerVibrate = findPreference(KEY_TIMER_VIBRATE);
             final boolean hasVibrator = ((Vibrator) timerVibrate.getContext()
                     .getSystemService(VIBRATOR_SERVICE)).hasVibrator();
@@ -112,6 +113,8 @@ public final class SettingsActivity extends ToolbarBaseActivity {
                     getResources().getDisplayMetrics().densityDpi / 160f);
             view.setPadding(paddingLeftRight, view.getPaddingTop(), paddingLeftRight,
                     view.getPaddingBottom());
+            setDivider(null);
+            GroupedPreferenceDecoration.install(getListView());
         }
 
         @Override

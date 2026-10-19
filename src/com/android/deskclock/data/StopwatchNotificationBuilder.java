@@ -19,19 +19,19 @@ package com.android.deskclock.data;
 import static com.android.deskclock.NotificationUtils.STOPWATCH_NOTIFICATION_CHANNEL_ID;
 
 import android.app.Notification;
+import android.app.Notification.Action;
+import android.app.Notification.Builder;
+import android.app.Notification.Metric;
+import android.app.Notification.Metric.TimeDifference;
+import android.app.Notification.MetricStyle;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.Icon;
 
 import androidx.annotation.StringRes;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationCompat.Action;
-import androidx.core.app.NotificationCompat.Builder;
-import androidx.core.app.NotificationCompat.Metric;
-import androidx.core.app.NotificationCompat.Metric.TimeDifference;
-import androidx.core.app.NotificationCompat.MetricStyle;
 
 import com.android.deskclock.DeskClock;
 import com.android.deskclock.NotificationUtils;
@@ -81,7 +81,7 @@ class StopwatchNotificationBuilder {
 
             final CharSequence title1 = res.getText(R.string.sw_pause_button);
             final PendingIntent intent1 = Utils.pendingServiceIntent(context, pause);
-            actions.add(new Action.Builder(null, title1, intent1).build());
+            actions.add(new Action.Builder((Icon) null, title1, intent1).build());
 
             // Right button: Add Lap
             if (DataModel.getDataModel().canAddMoreLaps()) {
@@ -91,7 +91,7 @@ class StopwatchNotificationBuilder {
 
                 final CharSequence title2 = res.getText(R.string.sw_lap_button);
                 final PendingIntent intent2 = Utils.pendingServiceIntent(context, lap);
-                actions.add(new Action.Builder(null, title2, intent2).build());
+                actions.add(new Action.Builder((Icon) null, title2, intent2).build());
             }
 
             // Show the current lap number if any laps have been recorded.
@@ -113,7 +113,7 @@ class StopwatchNotificationBuilder {
             // We can only resume from the notification.
             final CharSequence title1 = res.getText(R.string.sw_resume_button);
             final PendingIntent intent1 = Utils.pendingServiceIntent(context, start);
-            actions.add(new Action.Builder(null, title1, intent1).build());
+            actions.add(new Action.Builder((Icon) null, title1, intent1).build());
 
             // Right button: Reset (dismisses notification and resets stopwatch)
             final Intent reset = new Intent(context, StopwatchService.class)
@@ -122,7 +122,7 @@ class StopwatchNotificationBuilder {
 
             final CharSequence title2 = res.getText(R.string.sw_reset_button);
             final PendingIntent intent2 = Utils.pendingServiceIntent(context, reset);
-            actions.add(new Action.Builder(null, title2, intent2).build());
+            actions.add(new Action.Builder((Icon) null, title2, intent2).build());
 
             // A paused stopwatch reports the frozen time rather than counting up.
             elapsed = TimeDifference.forPausedStopwatch(Duration.ofMillis(totalTime),
@@ -135,7 +135,7 @@ class StopwatchNotificationBuilder {
                         elapsed,
                         text != null ? text : res.getText(R.string.menu_stopwatch)));
 
-        final Builder notification = new NotificationCompat.Builder(
+        final Builder notification = new Notification.Builder(
                 context, STOPWATCH_NOTIFICATION_CHANNEL_ID)
                         .setLocalOnly(true)
                         .setOngoing(true)
@@ -147,8 +147,8 @@ class StopwatchNotificationBuilder {
                         .setSubText(running ? null : res.getText(R.string.swn_paused))
                         .setContentIntent(pendingShowApp)
                         .setAutoCancel(stopwatch.isPaused())
-                        .setPriority(NotificationManager.IMPORTANCE_DEFAULT)
-                        .setCategory(NotificationCompat.CATEGORY_STOPWATCH)
+                        .setPriority(Notification.PRIORITY_DEFAULT)
+                        .setCategory(Notification.CATEGORY_STOPWATCH)
                         .setSmallIcon(R.drawable.stat_notify_stopwatch)
                         .setColor(ThemeUtils.resolveColor(context, R.attr.colorSurface))
                         .setGroup(nm.getStopwatchNotificationGroupKey());

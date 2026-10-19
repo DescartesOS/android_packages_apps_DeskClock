@@ -20,6 +20,10 @@ package com.android.deskclock.settings;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.MenuItem;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -86,6 +90,14 @@ public final class ScreensaverSettingsActivity extends ToolbarBaseActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.screensaver_settings);
+            PreferenceEmblems.apply(getPreferenceScreen());
+        }
+
+        @Override
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            setDivider(null);
+            GroupedPreferenceDecoration.install(getListView());
         }
 
         @Override

@@ -51,6 +51,7 @@ import android.widget.TextClock;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.animation.PathInterpolatorCompat;
 
@@ -156,6 +157,8 @@ public class AlarmActivity extends BaseActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Ringing screens stay dark, also over a light theme and the lock screen.
+        getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         super.onCreate(savedInstanceState);
 
         setVolumeControlStream(AudioManager.STREAM_ALARM);

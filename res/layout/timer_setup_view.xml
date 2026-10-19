@@ -60,8 +60,9 @@
         android:layout_height="0dp"
         android:ellipsize="none"
         android:gravity="center"
-        android:fontFamily="sans-serif"
-        android:textColor="?android:attr/textColorPrimary"
+        android:fontFamily="@font/google_sans_flex"
+        android:fontVariationSettings="'wght' 500, 'ROND' 100"
+        android:textColor="?attr/colorPrimary"
         android:textSize="@dimen/timer_setup_digit_font_size"
         tools:text="12h34m56s"
         tools:ignore="MissingConstraints" />

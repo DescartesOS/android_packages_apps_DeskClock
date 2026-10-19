@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.StringRes;
@@ -41,24 +42,32 @@ public final class UiDataModel {
 
     /** Identifies each of the primary tabs within the application. */
     public enum Tab {
-        ALARMS(AlarmClockFragment.class, R.id.page_alarm, R.string.menu_alarm),
-        CLOCKS(ClockFragment.class, R.id.page_clock, R.string.menu_clock),
-        TIMERS(TimerFragment.class, R.id.page_timer, R.string.menu_timer),
-        STOPWATCH(StopwatchFragment.class, R.id.page_stopwatch, R.string.menu_stopwatch);
+        ALARMS(AlarmClockFragment.class, R.id.page_alarm, R.string.menu_alarm,
+                R.drawable.ic_alarm),
+        CLOCKS(ClockFragment.class, R.id.page_clock, R.string.menu_clock,
+                R.drawable.ic_clock),
+        TIMERS(TimerFragment.class, R.id.page_timer, R.string.menu_timer,
+                R.drawable.ic_timer),
+        STOPWATCH(StopwatchFragment.class, R.id.page_stopwatch, R.string.menu_stopwatch,
+                R.drawable.ic_stopwatch);
 
         private final String mFragmentClassName;
         private final @IdRes int mPageResId;
         private final @StringRes int mLabelResId;
+        private final @DrawableRes int mIconResId;
 
-        Tab(Class fragmentClass, @IntegerRes int pageResId, @StringRes int labelResId) {
+        Tab(Class fragmentClass, @IntegerRes int pageResId, @StringRes int labelResId,
+                @DrawableRes int iconResId) {
             mFragmentClassName = fragmentClass.getName();
             mPageResId = pageResId;
             mLabelResId = labelResId;
+            mIconResId = iconResId;
         }
 
         public String getFragmentClassName() { return mFragmentClassName; }
         public @IdRes int getPageResId() { return mPageResId; }
         public @StringRes int getLabelResId() { return mLabelResId; }
+        public @DrawableRes int getIconResId() { return mIconResId; }
     }
 
     /** The single instance of this data model that exists for the life of the application. */

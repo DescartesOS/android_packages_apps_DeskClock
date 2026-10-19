@@ -39,14 +39,34 @@
             tools:ignore="RtlSymmetry"
             android:gravity="center">
 
-            <TextView
-                android:id="@+id/title_view"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                android:paddingStart="24dp"
-                tools:text="Alarm"/>
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/m3e_screen_margin"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Cookie emblem showing the current tab's icon. -->
+                <ImageView
+                    android:id="@+id/title_emblem"
+                    android:layout_width="@dimen/m3e_title_emblem_size"
+                    android:layout_height="@dimen/m3e_title_emblem_size"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/m3e_cookie"
+                    android:backgroundTint="?attr/colorPrimaryContainer"
+                    android:importantForAccessibility="no"
+                    android:padding="@dimen/m3e_title_emblem_icon_padding"
+                    android:scaleType="fitCenter"
+                    app:tint="?attr/colorOnPrimaryContainer" />
+
+                <TextView
+                    android:id="@+id/title_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Title"
+                    tools:text="Alarm" />
+            </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -88,8 +108,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fab"
                 app:layout_constraintVertical_bias="0.35"
-                android:backgroundTint="?attr/colorSecondary"
-                android:tint="?attr/colorOnSecondary"/>
+                app:backgroundTint="?attr/colorSecondaryContainer"
+                app:tint="?attr/colorOnSecondaryContainer"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
@@ -104,8 +124,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:backgroundTint="?attr/colorPrimary"
-                app:tint="?attr/colorOnPrimary"/>
+                app:backgroundTint="?attr/colorPrimaryContainer"
+                app:tint="?attr/colorOnPrimaryContainer"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/right_button"
@@ -118,8 +138,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.65"
-                android:backgroundTint="?attr/colorSecondary"
-                android:tint="?attr/colorOnSecondary"/>
+                app:backgroundTint="?attr/colorSecondaryContainer"
+                app:tint="?attr/colorOnSecondaryContainer"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -127,16 +147,16 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.android.deskclock.widget.FloatingTabBar
         android:id="@+id/bottom_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/colorSurfaceVariant"
-        app:menu="@menu/bottom_navigation_menu"
-        app:itemIconTint="@color/tab_tint_color"
-        app:itemTextColor="@color/tab_tint_color"
-        app:itemTextAppearanceActive="@style/navText"
-        app:itemTextAppearanceInactive="@style/navText"
-        app:labelVisibilityMode="labeled" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/m3e_nav_pill_margin_horizontal"
+        android:layout_marginEnd="@dimen/m3e_nav_pill_margin_horizontal"
+        android:layout_marginBottom="@dimen/m3e_nav_pill_margin_bottom"
+        android:background="@drawable/m3e_nav_pill"
+        android:padding="@dimen/m3e_nav_pill_padding"
+        app:menu="@menu/bottom_navigation_menu" />
 
 </LinearLayout>

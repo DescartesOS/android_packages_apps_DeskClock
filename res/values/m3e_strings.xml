@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Hero card at the top of settings. -->
+    <string name="m3e_settings_hero_title">Made for you.</string>
+    <string name="m3e_settings_hero_summary">Your clock, arranged your way.</string>
+</resources>

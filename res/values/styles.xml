@@ -17,47 +17,81 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Expressive large title, as on the settings screens. -->
+    <style name="TextAppearance.DeskClock.LargeTitle" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="android:textSize">@dimen/m3e_large_title_text_size</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 400, 'ROND' 0"</item>
+    </style>
+
+    <style name="TextAppearance.DeskClock.TimePickerDigits" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 500, 'ROND' 100"</item>
+    </style>
+
+    <style name="TextAppearance.DeskClock.CollapsedTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="fontFamily">@font/google_sans_flex</item>
+    </style>
+
+    <!-- Preference category headings read like section titles. -->
+    <style name="TextAppearance.DeskClock.PreferenceCategory" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="fontFamily">@font/google_sans_flex</item>
+    </style>
+
     <style name="no_alarms">
         <item name="android:textSize">@dimen/no_alarm_font_size</item>
-        <item name="android:textColor">@color/white_63p</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
     </style>
 
     <style name="display_time">
-        <item name="android:textSize">56sp</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:fontFeatureSettings">tnum</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 500, 'ROND' 100"</item>
     </style>
 
     <style name="world_clock_time">
         <item name="android:textSize">48sp</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 400, 'ROND' 100"</item>
     </style>
 
     <style name="body">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 500, 'ROND' 0"</item>
     </style>
 
     <style name="big_thin">
         <item name="android:textSize">@dimen/big_font_size</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 300, 'ROND' 100"</item>
     </style>
 
     <style name="alarm_lockscreen_thin">
         <item name="android:textSize">@dimen/alarm_info_font_size</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 300, 'ROND' 100"</item>
     </style>
 
     <style name="PrimaryLabelTextParentAppearance">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textSize">@dimen/label_text_size</item>
     </style>
 
     <style name="PrimaryLabelTextAppearance" parent="PrimaryLabelTextParentAppearance">
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 500, 'ROND' 0"</item>
     </style>
 
     <style name="SecondaryLabelTextParentAppearance">
@@ -66,11 +100,14 @@
     </style>
 
     <style name="SecondaryLabelTextAppearance" parent="SecondaryLabelTextParentAppearance">
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 500, 'ROND' 0"</item>
     </style>
 
     <style name="navText">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 500, 'ROND' 0"</item>
     </style>
 
     <style name="Widget.ActionBar" parent="Widget.AppCompat.ActionBar">
@@ -127,7 +164,7 @@
     </style>
 
     <style name="MaterialCardViewStyle">
-        <item name="android:layout_marginTop">8.0dip</item>
+        <item name="android:layout_marginTop">6.0dip</item>
         <item name="android:layout_marginStart">16.0dip</item>
         <item name="android:layout_marginEnd">16.0dip</item>
         <item name="elevation">0.0dip</item>
@@ -160,7 +197,10 @@
     </style>
 
     <style name="TextAppearance.Title" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textSize">22.0sp</item>
+        <item name="android:textSize">@dimen/m3e_title_text_size</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
+        <item name="android:fontVariationSettings">"'wght' 450, 'ROND' 0"</item>
     </style>
 
     <style name="TimerSetupTime">
